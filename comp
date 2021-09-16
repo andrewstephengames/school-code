@@ -1,0 +1,4 @@
+#!/bin/sh
+echo 'File to compile:'
+read $file
+gcc -o "$file.c" "$file"
