@@ -1,4 +1,5 @@
 #!/bin/sh
-echo 'File to compile:'
-read $file
-gcc -o "$file.c" "$file"
+echo 'Choose file to compile.'
+file="$(ls | fzf)"
+obj="$(echo "${file%.*}")"
+gcc -o "$obj" "$file"
