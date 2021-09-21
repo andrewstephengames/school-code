@@ -1,8 +1,9 @@
+//493.c
 #include <stdio.h>
 
 int a[201], b[201], n;
 
-int sumcif (int n)
+int sumcif ()
 {
     int s = 0;
     while (n)
@@ -13,7 +14,7 @@ int sumcif (int n)
     return s;
 }
 
-void citire (int a[], int n)
+void citire ()
 {
     scanf ("%d", &n);
     for (int i = 0; i < n; i++)
@@ -22,7 +23,7 @@ void citire (int a[], int n)
     }
 }
 
-void det (int a[], int b[], int n)
+void det ()
 {
     for (int i = 0; i < n; i++)
     {
@@ -33,7 +34,7 @@ void det (int a[], int b[], int n)
 
 int main ()
 {
-    citire (a, n);
-    det (a, b, n);
+    citire ();
+    det ();
     return 0;
 }
