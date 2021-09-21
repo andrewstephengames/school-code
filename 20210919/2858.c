@@ -1,47 +1,55 @@
 #include <stdio.h>
 
-int svp, spp, nrd, snr;
+int a[101], n, svp, spp, nr_10, sd;
 
-void afisareds (int a[], int n)
+void afisarerev (int a[], int n)
 {
-    for (int i = n-1; i > -1; i--)
-    {
+    for (int i = n; i > 0; i--)
         printf ("%d ", a[i]);
-        if (a[i]%2 == 0) svp+=a[i];
-    }
+}
+
+void svpf (int a[], int n)
+{
+    for (int i = 1; i <= n; i++)
+        if (a[i]%2 == 0) svp += a[i];
     printf ("\n%d", svp);
 }
 
 void sppf (int a[], int n)
 {
-    for (int i = 0; i < n; i++)
-        if (i%2 == 0) spp++;
+    for (int i = 1; i <= n; i++)
+    {
+        if (i%2 == 0) spp += a[i];
+    }
     printf ("\n%d", spp);
 }
 
-void nrdf (int a[], int n)
+void nr_10f (int a[], int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        if (a[i]%10 == 0) nrd++;
-        if (a[i]%3 == 0 && i%2 == 1)
-            snr += a[i];
+        if (a[i]%10 == 0) nr_10++;
     }
-    printf ("\n%d\n%d", nrd, snr);
+    printf ("\n%d", nr_10);
 }
 
-void citire (int a[], int n)
+void sdf (int a[], int n)
 {
-    for (int i = 0; i < n; i++)
-        scanf ("%d", &a[i]);
+    for (int i = 1; i <= n; i++)
+        if (a[i]%3 == 0 && i%2 == 1)
+            sd += a[i];
+    printf ("\n%d", sd);
 }
 
 int main ()
 {
-    int a[101], n;
-    citire(a, n);
-    afisareds(a, n);   
-    sppf (a, n);
-    nrdf (a, n);
+    scanf ("%d", &n);
+    for (int i = 1; i <= n; i++)
+        scanf ("%d", &a[i]);
+    afisarerev(a, n);
+    svpf(a, n);
+    sppf(a, n);
+    nr_10f(a, n);
+    sdf(a, n);
     return 0;
 }
