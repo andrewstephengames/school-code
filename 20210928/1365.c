@@ -1,4 +1,4 @@
-//i suck at making it compile (TODO)
+//i suck at making it compile (TODO
 #include <stdio.h>
 #include <math.h>
 
