@@ -1,4 +1,4 @@
-//TODO: only fills primary diagona
+//TODO: only fills primary diagonal
 #include <stdio.h>
 
 int n, a[52][52];
