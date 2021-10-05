@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int n, m, a[102][102];
+
+void citire ()
+{
+    scanf ("%d %d", &n, &m);
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++)
+            scanf ("%d", &a[i][j]);
+}
+
+int main ()
+{
+    int s;
+    citire ();
+    for (int i = 0; i < n; i++)
+    {
+        s = 0;
+        for (int j = 0; j < m; j++)
+        {
+            s += a[i][j];
+        }
+        printf ("%d ", s);
+    }
+    return 0;
+}
