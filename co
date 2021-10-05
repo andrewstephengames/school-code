@@ -2,4 +2,4 @@
 echo 'Choose file to compile.'
 file="$(ls | fzf)"
 obj="$(echo "${file%.*}")"
-gcc -o "$obj" "$file"
+gcc -Wall -o "$obj" "$file"
