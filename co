@@ -2,4 +2,5 @@
 echo 'Choose file to compile.'
 file="$(ls | fzf)"
 obj="$(echo "${file%.*}")"
-gcc -Wall -o "$obj" "$file"
+[[ $file = *.c ]] && gcc -Wall -o "$obj" "$file"; exit
+[[ $file = *.cpp ]] && g++ -Wall -o "$obj" "$file"; exit
