@@ -1,34 +1,34 @@
-#include <stdio.h>
+#include <iostream>
+#include <fstream>
 
-FILE *in, *out;
+using namespace std;
+
+ifstream in ("paritar.in");
+ofstream out ("paritar.out");
+
 int ok;
 
 int main ()
 {
-    in = fopen ("paritar.in", "r");
-    out = fopen ("paritar.out", "w");
     int n, a[500002];
-    fscanf (in, "%d", &n);
+    in >> n;
     for (int i = 0; i < 2*n; i++)
-        fscanf (in, "%d", &a[i]);
+        in >> a[i];
     for (int i = 0; i < n; i++)
         for (int j = n; j < n*2; j++)
         {
             if (a[i]%2 == 0 && a[j]%2 == 0)
             {
                 ok++;
-//                printf ("%d:%d-%d\n", ok, a[i], a[j]);
                 break;
             }
             if (a[i]%2 == 1 && a[j]%2 == 1)
             {
                 ok++;
-//                printf ("%d:%d-%d\n", ok, a[i], a[j]);
                 break;
             }
         }
-    if (ok == n) fprintf (out, "DA");
-    else fprintf (out, "NU");
-//    printf ("%d\n", ok);
+    if (ok == n) out << "DA";
+    else out << "NU";
     return 0;
 }

@@ -1,4 +1,3 @@
-//TODO: wrong answer for second example
 #include <iostream>
 #include <climits>
 

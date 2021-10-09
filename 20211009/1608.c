@@ -19,8 +19,11 @@ int nrdiv (int n)
 
 int main ()
 {
-//    printf ("%d\n", nrdiv(12));
+/*
+debugging
+    printf ("%d\n", nrdiv(12));
     return 0;
+*/
     int aux;
     in = fopen ("sortare_divizori.in", "r");
     out = fopen ("sortare_divizori.out", "w");
