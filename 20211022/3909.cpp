@@ -1,8 +1,11 @@
-#include <stdio.h>
+#include <fstream>
 
-FILE *in, *out;
+ifstream in ("sirpie.in");
+ofstream out ("sirpie.out");
 
-int n, st[10];
+using namespace std;
+
+int n, st[10], v[10], a, b;
 
 void init (int k)
 {
@@ -12,8 +15,8 @@ void init (int k)
 void afisare ()
 {
     for (int i = 1; i <= n; i++)
-        fprintf (out, "%d ", st[i]);
-    fprintf (out, "\n");
+        cout << v[st[i]] << " ";
+    cout << "\n";
 }
 
 int succesor (int k)
@@ -29,7 +32,7 @@ int succesor (int k)
 int valid (int k)
 {
     for (int i = 1; i < k; i++)
-        if (st[i] == st[k])
+        if (st[k] == st[i])
             return 0;
     return 1;
 }
@@ -41,30 +44,38 @@ int solutie (int k)
 
 void back (int k)
 {
-    int as, ev;
+    int suc, val;
+    init(k);
     while (k > 0)
     {
         do
         {
-            as = succesor(k);
-            if (as) ev = valid(k);
-        } while (as && !ev);
-        if (as)
-            if (solutie(k)) afisare();
+            suc = succesor (k);
+            if (suc) val = valid(k);
+        } while (suc && !val);
+        if (suc)
+        {
+            if (solutie(k))
+                afisare ();
             else
             {
                 k++;
                 init(k);
             }
+        }
         else k--;
     }
 }
 
 int main ()
 {
-    in = fopen ("permutari.in", "r");
-    out = fopen ("permutari.out", "w");
-    fscanf (in, "%d", &n);
+    cin >> a >> b;
+    n = b-a+1;
+    for (int i = 1; i <= n; i++)
+    {
+        v[i] = a;
+        a++;
+    }
     back(1);
     return 0;
 }
