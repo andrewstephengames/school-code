@@ -1,5 +1,7 @@
-#include <stdio.h>
-int st[10], n;
+#include <iostream>
+using namespace std;
+
+int st[10];
 
 void init (int k)
 {
@@ -9,24 +11,11 @@ void init (int k)
 int solutie (int k)
 {
     return 5 == k;
-}
-
-int valid (int k)
-{
-/*
-    if (st[k] == 0 && st[k] == st[k-1] &&
-        st[k] == st[k-2])
-        return 0;
-*/
-    for (int i = 1; i < k; i++)
-        if (st[k] == st[i])
-            return 0;
-    return 1;
-}
+} 
 
 int succesor (int k)
 {
-    if (st[k] < 5)
+    if (st[k] < 1)
     {
         st[k]++;
         return 1;
@@ -34,11 +23,18 @@ int succesor (int k)
     return 0;
 }
 
+int valid (int k)
+{
+    if (k > 2 && st[k] == 0 && st[k-1] == 0 && st[k-2] == 0)
+        return 0;
+    return 1;
+}
+
 void tipar ()
 {
     for (int i = 1; i <= 5; i++)
-        printf ("%d", st[i]);
-    printf ("\n");
+        cout << st[i];
+    cout << "\n";
 }
 
 void back (int k)
@@ -50,7 +46,7 @@ void back (int k)
         do
         {
             as = succesor(k);
-            if (as) ev = valid(k);
+            if (as) ev = valid (k);
         } while (as && !ev);
         if (as)
         {
@@ -58,18 +54,11 @@ void back (int k)
                 tipar();
             else
             {
-                if (k == 0)
-                    k = 1;
-                else k = 0;
+                k++;
                 init(k);
             }
         }
-        else
-        {
-            if (k == 1)
-                k = 0;
-            else k = 1;
-        }
+        else k--;
     }
 }
 
