@@ -1,7 +1,7 @@
-#include <fstream>
+#include <iostream>
+#include <math.h>
+#include <time.h>
 using namespace std;
-ifstream in ("submultimi.in");
-ofstream out ("submultimi.out");
 
 int st[10], n;
 
@@ -10,18 +10,27 @@ void init (int k)
     st[k] = 0;
 }
 
-void tipar (int k)
+void tipar ()
 {
-    for (int i = 1; i <= k; i++)
-        out << st[i] << " ";
-    out << "\n";
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+        {
+            if (st[i] == j)
+                cout << "* ";
+            else cout << "- ";
+        }
+    cout << "\n";
 }
 
 int valid (int k)
 {
-    if (k > 1)
-        if (st[k] <= st[k-1])
+    for (int i = 1; i < k; i++)
+    {
+        if (st[i] == st[k] ||
+            abs (st[k]-st[i]) ==
+            abs (i-k))
             return 0;
+    }
     return 1;
 }
 
@@ -37,7 +46,7 @@ int succesor (int k)
 
 int solutie (int k)
 {
-    return k <= n;
+    return n == k;
 }
 
 void back (int k)
@@ -54,11 +63,7 @@ void back (int k)
         if (as)
         {
             if (solutie(k))
-            {
-                tipar(k);
-                k++;
-                init(k);
-            }
+                tipar();
             else
             {
                 k++;
@@ -71,8 +76,8 @@ void back (int k)
 
 int main ()
 {
-    in >> n;
+    cin >> n;
     back(1);
-    out << "\n" << (float)clock()/1000 << " ms\n";
+    cout << "\n" << (float)clock()/1000 << " ms\n";
     return 0;
 }
