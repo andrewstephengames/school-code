@@ -25,9 +25,15 @@ int succesor (int k)
 
 int valid (int k)
 {
+    if (k == n && st[k] != 6)
+        return 0;
     for (int i = 1; i < k; i++)
+    {
+        if (st[i] > st[k])
+            return 0;
         if (st[i] == st[k])
             return 0;
+    }
     return 1;
 }
 
@@ -35,10 +41,8 @@ void tipar ()
 {
     int nr = 0;
     for (int i = 1; i <= n; i++)
-    {
-        nr = nr*10+st[i];
-    }
-    if (nr%10 == 6) cout << nr << " ";
+        cout << st[i];
+    cout << endl;
 }
 
 void back (int k)
