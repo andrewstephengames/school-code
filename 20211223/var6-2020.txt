@@ -1,0 +1,203 @@
+SI
+1. d.
+2.
+void f (int i, int v[4])
+{
+    if (i >= 3) v[i]++;
+    else f(i+1, v);
+    cout << v[i];
+}
+
+f(0, v)
+a. f(0, {-1, 1, 0, 2}) -1
+   f(1, v) 1
+   f(2, v) 0
+   f(3, v) v[3] = 3  3
+   => 301-1
+
+b. f(0, {0, 2, 0, 1}) 0
+   f(1, v) 2
+   f(2, v) 0
+   f(3, v) v[3] = 2 2
+   => 2020
+
+c. f(0, {1, -1, 0, 1}) 1
+   f(1, v) -1
+   f(2, v) 0
+   f(3, v) v[3] = 2 2
+   => 20-11
+
+d. f(0, {2, 0, 1, 0}) 2
+   f(1, v) 0
+   f(2, v) 1
+   f(3, v) v[3] = 1 1
+   => 1102
+
+3.
+(70, 60, 40, 30), (70, 60, 50, 20), (80, 50, 40, 30), (80, 60, 40, 20)
+=> (80, 70, 40, 10), (80, 60, 50, 10) (b)
+
+SII
+
+1. a)
+a = 240107
+c = 0, 2, 4, 6, 8, 10
+b = 240107, 24010, 240107
+x = 0, 1, 0, 1, 0, 1, 0
+
+> 1 1 1 0 0
+
+b) min: 20468 max: 86420
+
+c)
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+    int a, c = 0, b, x;
+    cin >> a;
+    do
+    {
+        b = a;
+        x = 0;
+        do
+        {
+            if (b%10 == c)
+                x = 1;
+            b /= 10;
+        } while (b != 0 && x != 1);
+        cout << x << " ";
+        c += 2;
+    } while (c <= 9);
+    return 0;
+}
+
+d)
+citeste a
+c<-0
+repeta
+    b<-a; x<-0
+    daca b%10=c atunci
+        x<-1
+    b <- [b/10]
+    cat timp b!=0 si x!=1 executa
+        daca b%10=c atunci
+            x<-1
+        b<-[b/10]
+    scrie x, ' '
+    c<-c+2
+pana cand c>9
+
+2.
+struct calculator
+{
+    char monitor;
+    struct
+    {
+        int interna, externa;
+    } memorie;
+} c;
+
+3.
+for (i = 0; i < 9; i++)
+    for (j = 0; j < 9; j++)
+        if (i > j && i+j > n-1)
+            a[i][j] = '<';
+        else a[i][j] = '>';
+
+SIII
+1.
+#include <iostream>
+
+using namespace std;
+
+int suma (int a, int b)
+{
+    int s = 0, d = 1;
+    while (d*d < a)
+    {
+        if (a%d == 0)
+        {
+            if (b%d == 0)
+                s += d;
+            if (b%(a/d) == 0)
+                s += a/d;
+        }
+        d++;
+    }
+    if (d*d == a)
+        if (b%d == 0)
+            s += d;
+    return s;
+}
+
+int main ()
+{
+    cout << suma (20, 12);
+    return 0;
+}
+
+2.
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+int main ()
+{
+    char s[101], *p, tmp;
+    cin.get (s, 101);
+    p = strtok (s, " ");
+    while (p)
+    {
+        tmp = p[0];
+        for (size_t i = 0; i <= strlen (p); i++)
+            p[i] = p[i+1];
+        p[strlen(p)] = '\0';
+        p[strlen(p)-1] = tmp;
+        cout << p << " ";
+        p = strtok (s, NULL);
+    }
+    return 0;
+}
+3.
+a. Algoritmul parcurge sirul citit din fisier, verificand numarul de aparitii pentru fiecare element. Daca lungimea sirului este para si exista doar un element cu o singura aparitie, sirul este palindromic, iar in caz contrar nu este. Daca lungimea sirului este impara iar oricare element nu are pereche identica, sirul nu este palindromic. In caz contrar, este. 
+b.
+#include <iostream>
+#include <fstream>
+using namespace std;
+ifstream in ("bac.in");
+
+int main ()
+{
+    int n, a[100000], k = 0, f[100000], ok = 1;
+    while (in >> n)
+    {
+        a[k] = n;
+        k++;
+    }
+    for (int i = 0; i <= k; i++)
+        if (a[i] == a[i+1] || a[i] == a[k-i])
+            f[a[i]]++;
+    if (k%2 == 1)
+    {
+        ok = 1;
+        for (int i = 0; i < k; i++)
+            if (f[a[i]]%2 == 1)
+                ok++;
+    }
+    if (k%2 == 0)
+        for (int i = 0; i < k; i++)
+        {
+            if (f[a[i]]%2 == 0)
+                continue;
+            if (f[a[i]] == 1)
+                ok++;
+        }
+    if (ok > 1)
+        cout << "NU";
+    if (ok == 0)
+        cout << "DA";
+    return 0;
+}
