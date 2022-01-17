@@ -8,13 +8,12 @@ struct obiect
 
 int main ()
 {
-    int n;
-    float gmax, castig = 0.0, eff[1001];
-    scanf ("%d %f", &n, &gmax);
+    double gmax, castig = 0.0, eff[1001], n;
+    scanf ("%lf %lf", &n, &gmax);
     for (int i = 1; i <= n; i++)
     {
         scanf ("%d %d", &a[i].G, &a[i].V);
-        eff[i] = a[i].V/a[i].G;
+        eff[i] = 1.0*a[i].V/a[i].G;
     }
     for (int i = 1; i < n; i++)
         for (int j = i+1; j <= n; j++)
@@ -43,6 +42,6 @@ int main ()
     */
     if (gmax > 0 && i <= n)
         castig += gmax*eff[i];
-    printf ("%.2f ", castig);
+    printf ("%.2lf ", castig);
     return 0;
 }
