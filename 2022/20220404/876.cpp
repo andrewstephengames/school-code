@@ -1,4 +1,3 @@
-//TODO: not grabbing last operation
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
@@ -16,20 +15,24 @@ void push (int el)
 
 void pop ()
 {
-     c_size--;
-     for (int i = 1; i < c_size; i++)
-          c[i] = c[i+1];
+     if (c_size)
+     {
+          c_size--;
+          for (int i = 1; i < c_size; i++)
+               c[i] = c[i+1];
+     }
 }
 
 void front ()
 {
-     cout << c[1] << endl;
+     if (c_size)
+          cout << c[1] << endl;
 }
 
 int main ()
 {
      cin >> n;
-     for (int i = 1; i <= n; i++)
+     for (int i = 1; i <= n+1; i++)
      {
           fgets (op, 10, stdin);
           if (op[0] == 'p' && op[1] == 'u')

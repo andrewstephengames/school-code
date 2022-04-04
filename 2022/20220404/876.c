@@ -1,4 +1,3 @@
-//TODO: not grabbing last operation
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,14 +13,18 @@ void push (int el)
 
 void pop ()
 {
-     c_size--;
-     for (int i = 1; i < c_size; i++)
-          c[i] = c[i+1];
+     if (c_size)
+     {
+          c_size--;
+          for (int i = 1; i < c_size; i++)
+               c[i] = c[i+1];
+     }
 }
 
 void front ()
 {
-     printf ("%d\n", c[1]);
+     if (c_size)
+          printf ("%d\n", c[1]);
 }
 
 int main ()
